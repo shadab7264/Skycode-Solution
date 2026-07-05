@@ -1,192 +1,196 @@
 // ========================================
-// SKYCODE SOLUTIONS - Premium Interactions
+// SKYCODE — Digital Heroes Style JS
 // ========================================
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// Cursor Glow Effect
-const cursorGlow = document.getElementById('cursorGlow');
-let mouseX = 0, mouseY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursorGlow.style.left = mouseX + 'px';
-    cursorGlow.style.top = mouseY + 'px';
-    cursorGlow.style.opacity = '1';
+// --- CURSOR ---
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('cursorFollower');
+let mx = 0, my = 0, fx = 0, fy = 0;
+document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+});
+(function loop() {
+    fx += (mx - fx) * 0.12;
+    fy += (my - fy) * 0.12;
+    follower.style.left = fx + 'px';
+    follower.style.top = fy + 'px';
+    requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a, button, [data-cursor="hover"]').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
 });
 
-document.addEventListener('mouseleave', () => {
-    cursorGlow.style.opacity = '0';
+// --- ORBS MOUSE PARALLAX ---
+document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    document.querySelectorAll('.orb').forEach((orb, i) => {
+        gsap.to(orb, { x: x * (i+1) * 15, y: y * (i+1) * 15, duration: 2.5, ease: 'power2.out' });
+    });
 });
 
-// Navbar Scroll Effect
-const navbar = document.getElementById('navbar');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-    lastScroll = currentScroll;
-});
-
-// Mobile Menu Toggle
+// --- MOBILE MENU ---
 const mobileToggle = document.getElementById('mobileToggle');
 const navLinks = document.querySelector('.nav-links');
+mobileToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
 
-mobileToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    mobileToggle.classList.toggle('active');
+// --- SMOOTH SCROLL ---
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { gsap.to(window, { duration: 1.1, scrollTo: { y: t, offsetY: 0 }, ease: 'power3.inOut' }); }
+    });
 });
 
-// Scroll Animations (AOS-like)
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+// --- HERO ENTRANCE ---
+const tl = gsap.timeline({ delay: 0.2 });
+tl.from('.hl-solid', { opacity: 0, y: 60, duration: 0.9, ease: 'power4.out' })
+  .from('.hl-second', { opacity: 0, y: 50, duration: 0.9, ease: 'power4.out' }, '-=0.6')
+  .from('.hero-para', { opacity: 0, y: 30, duration: 0.7 }, '-=0.5')
+  .from('.hero-form', { opacity: 0, y: 30, duration: 0.7 }, '-=0.4')
+  .from('.hero-right', { opacity: 0, x: 60, duration: 1, ease: 'power3.out' }, '-=0.8')
+  .from('.mockup-badge', { opacity: 0, scale: 0.8, stagger: 0.12, duration: 0.5 }, '-=0.4');
+
+// Floating badge animation
+gsap.to('.badge-tl', { y: -8, duration: 2.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+gsap.to('.badge-br', { y: 8, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+gsap.to('.hero-sphere', { y: -15, duration: 3.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+// --- SCROLL SPHERES: new sphere per section ---
+const spheres = document.querySelectorAll('.sphere-3d');
+const sphereMap = {
+    leads: document.querySelector('.sphere-blue'),
+    services: document.querySelector('.sphere-purple'),
+    work: document.querySelector('.sphere-metal'),
+    process: document.querySelector('.sphere-green'),
+    pricing: document.querySelector('.sphere-gold')
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('[data-aos]').forEach(el => {
-    observer.observe(el);
-});
-
-// Smooth Scroll for Navigation Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-            // Close mobile menu
-            navLinks.classList.remove('active');
-            mobileToggle.classList.remove('active');
-        }
-    });
-});
-
-// Animated Counter for Stats
-function animateCounter(element, target, duration = 2000) {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target + (element.dataset.suffix || '');
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start) + (element.dataset.suffix || '');
-        }
-    }, 16);
+function activateSphere(key) {
+    spheres.forEach(s => s.classList.remove('active'));
+    if (sphereMap[key]) sphereMap[key].classList.add('active');
 }
 
-// Observe stats for counter animation
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const text = stat.textContent;
-                const num = parseInt(text);
-                if (!isNaN(num) && !stat.dataset.animated) {
-                    stat.dataset.animated = 'true';
-                    stat.dataset.suffix = text.replace(/\d/g, '');
-                    animateCounter(stat, num);
-                }
+// Attach ScrollTriggers per section
+[
+    { sel: '.leads', key: 'leads' },
+    { sel: '.services', key: 'services' },
+    { sel: '.work', key: 'work' },
+    { sel: '.process', key: 'process' },
+    { sel: '.pricing', key: 'pricing' }
+].forEach(({ sel, key }) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    ScrollTrigger.create({
+        trigger: el,
+        start: 'top 60%',
+        end: 'bottom 40%',
+        onEnter: () => activateSphere(key),
+        onEnterBack: () => activateSphere(key),
+        onLeave: () => { if (sphereMap[key]) sphereMap[key].classList.remove('active'); },
+        onLeaveBack: () => { if (sphereMap[key]) sphereMap[key].classList.remove('active'); }
+    });
+});
+
+// --- LEADS COUNTER ---
+ScrollTrigger.create({
+    trigger: '.leads',
+    start: 'top 75%',
+    onEnter: () => {
+        document.querySelectorAll('.lead-num').forEach(el => {
+            if (el.dataset.done) return;
+            el.dataset.done = '1';
+            const target = parseInt(el.dataset.target);
+            gsap.to(el, {
+                textContent: target, duration: 2, ease: 'power2.out',
+                snap: { textContent: 1 },
+                onUpdate: function() { el.textContent = Math.floor(el.textContent); }
             });
+        });
+    }
+});
+
+// --- SECTION REVEALS ---
+gsap.utils.toArray('.sec-label, .sec-title, .intro-statement, .intro-label, .leads-tag').forEach(el => {
+    gsap.from(el, {
+        scrollTrigger: { trigger: el, start: 'top 88%' },
+        opacity: 0, y: 40, duration: 0.9, ease: 'power3.out'
+    });
+});
+
+gsap.utils.toArray('.srv-line').forEach((row, i) => {
+    gsap.from(row, {
+        scrollTrigger: { trigger: row, start: 'top 90%' },
+        opacity: 0, x: 50, duration: 0.7, delay: i * 0.06, ease: 'power3.out'
+    });
+});
+
+// --- SERVICE HOVER: sphere color + accent ---
+const srvSphere = document.getElementById('srvSphere');
+document.querySelectorAll('.srv-line').forEach((line, i) => {
+    line.addEventListener('mouseenter', () => {
+        const color = line.dataset.color;
+        line.style.setProperty('--srv-hover', color);
+        if (srvSphere) {
+            srvSphere.style.background = `radial-gradient(circle at 35% 30%, ${color}, ${color}11 70%)`;
+            gsap.to(srvSphere, { top: (18 + i * 11) + '%', duration: 0.6, ease: 'power2.out' });
         }
     });
-}, { threshold: 0.5 });
+});
 
-const heroStats = document.querySelector('.hero-stats');
-if (heroStats) statsObserver.observe(heroStats);
+gsap.utils.toArray('.work-item').forEach(item => {
+    gsap.from(item, {
+        scrollTrigger: { trigger: item, start: 'top 80%' },
+        opacity: 0, y: 60, duration: 0.9, ease: 'power3.out'
+    });
+});
 
-// Floating Particles
-const particlesContainer = document.getElementById('particles');
-if (particlesContainer) {
-    for (let i = 0; i < 20; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
-            background: rgba(0, 102, 255, ${Math.random() * 0.3 + 0.1});
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 4 + 3}s ease-in-out infinite;
-            animation-delay: ${Math.random() * 2}s;
-        `;
-        particlesContainer.appendChild(particle);
-    }
-}
+gsap.utils.toArray('.act').forEach((act, i) => {
+    gsap.from(act, {
+        scrollTrigger: { trigger: '.acts', start: 'top 80%' },
+        opacity: 0, y: 40, duration: 0.6, delay: i * 0.1, ease: 'power3.out'
+    });
+});
 
-// Form Submission Handler
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+gsap.utils.toArray('.tl-item').forEach((item, i) => {
+    gsap.from(item, {
+        scrollTrigger: { trigger: item, start: 'top 88%' },
+        opacity: 0, x: -40, duration: 0.6, delay: i * 0.1, ease: 'power3.out'
+    });
+});
+
+gsap.utils.toArray('.price-card').forEach((card, i) => {
+    gsap.from(card, {
+        scrollTrigger: { trigger: '.price-grid', start: 'top 82%' },
+        opacity: 0, y: 50, duration: 0.7, delay: i * 0.1, ease: 'power3.out'
+    });
+});
+
+// --- WORK IMAGE PARALLAX ---
+gsap.utils.toArray('.work-img img').forEach(img => {
+    gsap.to(img, {
+        scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true },
+        y: -40, ease: 'none'
+    });
+});
+
+// --- FORMS ---
+document.querySelectorAll('#contactForm, #launchForm').forEach(form => {
+    form.addEventListener('submit', e => {
         e.preventDefault();
-        
-        const btn = contactForm.querySelector('button[type="submit"]');
-        const originalText = btn.innerHTML;
-        
-        btn.innerHTML = `
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin">
-                <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-            </svg>
-            Sending...
-        `;
+        const btn = form.querySelector('button');
+        const span = btn.querySelector('span');
+        const orig = span.textContent;
+        span.textContent = 'Sending...';
         btn.disabled = true;
-
         setTimeout(() => {
-            btn.innerHTML = `
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 6L9 17l-5-5"/>
-                </svg>
-                Message Sent!
-            `;
-            btn.style.background = '#10b981';
-            
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                btn.style.background = '';
-                contactForm.reset();
-            }, 3000);
+            span.textContent = '✓ Message Sent!';
+            setTimeout(() => { span.textContent = orig; btn.disabled = false; form.reset(); }, 3000);
         }, 1500);
     });
-}
-
-// Pricing Card Hover Tilt Effect
-document.querySelectorAll('.pricing-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-    });
-});
-
-// Add loading animation class
-document.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('loaded');
 });

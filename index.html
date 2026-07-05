@@ -3,525 +3,504 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkyCode Solutions | Premium Web Development Agency</title>
+    <title>SkyCode Solutions — Premium Digital Agency</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 </head>
 <body>
-    <!-- Cursor Glow Effect -->
-    <div class="cursor-glow" id="cursorGlow"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Gradient Orbs -->
+    <div class="orbs-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Scroll Spheres (appear per section) -->
+    <div class="scroll-spheres" id="scrollSpheres">
+        <div class="sphere-3d sphere-blue" data-section="leads"></div>
+        <div class="sphere-3d sphere-purple" data-section="services"></div>
+        <div class="sphere-3d sphere-metal" data-section="work"></div>
+        <div class="sphere-3d sphere-green" data-section="process"></div>
+        <div class="sphere-3d sphere-gold" data-section="pricing"></div>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="logo.jpeg" alt="SkyCode Solutions" class="logo-img">
-                <div class="logo-text-wrap">
-                    <span class="logo-text"><span class="logo-sky">SKY</span><span class="logo-code">CODE</span></span>
-                    <span class="logo-tagline">SOLUTIONS</span>
-                </div>
+                <img src="logo.jpeg" alt="SkyCode" class="logo-img">
+                <span class="logo-word">SKYCODE</span>
             </a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#process">Process</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <a href="#contact" class="nav-cta">Start Project</a>
-            <button class="mobile-toggle" id="mobileToggle">
-                <span></span><span></span><span></span>
-            </button>
+            <a href="#contact" class="nav-cta">Start a project</a>
+            <button class="mobile-toggle" id="mobileToggle"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="home">
-        <div class="hero-bg">
-            <div class="grid-lines"></div>
-            <div class="floating-particles" id="particles"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                We Design. We Develop. We Grow.
-            </div>
-            <h1 class="hero-title">
-                We Build Digital Solutions That
-                <span class="gradient-text">Generate Revenue</span>
-            </h1>
-            <p class="hero-subtitle">
-                Websites, Mobile Apps, AI Chatbots & Helpdesk Automation — 
-                premium digital solutions that captivate your audience and drive real business results.
-            </p>
-            <div class="hero-cta">
-                <a href="#pricing" class="btn-primary">
-                    View Pricing
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-                <a href="#portfolio" class="btn-secondary">See Our Work</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">150+</span>
-                    <span class="stat-label">Projects Delivered</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">98%</span>
-                    <span class="stat-label">Client Satisfaction</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">5+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="hero-mockup">
-                <div class="mockup-browser">
-                    <div class="browser-dots">
-                        <span></span><span></span><span></span>
-                    </div>
-                    <div class="browser-content">
-                        <div class="mock-nav">
-                            <div class="mock-logo-text">SkyCode</div>
-                            <div class="mock-nav-links">
-                                <span>Home</span><span>Services</span><span>Pricing</span><span>Contact</span>
-                            </div>
-                        </div>
-                        <div class="mock-hero-section">
-                            <div class="mock-hero-text">
-                                <div class="mock-badge-text">✦ Premium Agency</div>
-                                <div class="mock-h1">We Build Websites That Generate Revenue</div>
-                                <div class="mock-p">Transform your digital presence with stunning, high-performance websites.</div>
-                                <div class="mock-btn-row">
-                                    <div class="mock-btn primary">Get Started</div>
-                                    <div class="mock-btn">Our Work</div>
-                                </div>
-                            </div>
-                            <div class="mock-hero-img">
-                                <div class="mock-code-block">
-                                    <span class="code-line blue">&lt;div class="hero"&gt;</span>
-                                    <span class="code-line white">&nbsp;&nbsp;&lt;h1&gt;SkyCode&lt;/h1&gt;</span>
-                                    <span class="code-line green">&nbsp;&nbsp;&lt;p&gt;Solutions&lt;/p&gt;</span>
-                                    <span class="code-line blue">&lt;/div&gt;</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mock-stats-bar">
-                            <div class="mock-stat"><span class="stat-val">150+</span><span class="stat-lbl">Projects</span></div>
-                            <div class="mock-stat"><span class="stat-val">98%</span><span class="stat-lbl">Satisfaction</span></div>
-                            <div class="mock-stat"><span class="stat-val">5+</span><span class="stat-lbl">Years</span></div>
-                        </div>
-                        <div class="mock-cards-section">
-                            <div class="mock-section-title">Our Services</div>
-                            <div class="mock-grid">
-                                <div class="mock-card">
-                                    <div class="mock-card-icon">🌐</div>
-                                    <div class="mock-card-title">Websites & Apps</div>
-                                    <div class="mock-card-text">Premium digital solutions</div>
-                                </div>
-                                <div class="mock-card">
-                                    <div class="mock-card-icon">🤖</div>
-                                    <div class="mock-card-title">AI Chatbots</div>
-                                    <div class="mock-card-text">24/7 helpdesk automation</div>
-                                </div>
-                                <div class="mock-card">
-                                    <div class="mock-card-icon">📞</div>
-                                    <div class="mock-card-title">On-Call AI</div>
-                                    <div class="mock-card-text">Voice assistant service</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- Giant vertical background word -->
+        <div class="hero-vertical-word">SKYCODE</div>
+        <div class="hero-vertical-meta">SKYCODE SOLUTIONS · EST 2024</div>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">What We Do</span>
-                <h2 class="section-title">Services That <span class="gradient-text">Elevate</span> Your Brand</h2>
-                <p class="section-desc">From websites & mobile apps to AI chatbots and voice assistants — we deliver end-to-end premium digital solutions.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="2" y="3" width="20" height="14" rx="2"/>
-                            <path d="M8 21h8M12 17v4"/>
-                        </svg>
+        <div class="hero-inner">
+            <!-- Left: headline + form -->
+            <div class="hero-left">
+                <h1 class="hero-headline">
+                    <span class="hl-solid">NO MORE</span>
+                    <span class="hl-second"><span class="hl-outline">MEDIOCRE</span> <span class="hl-blue">WEBSITES.</span></span>
+                </h1>
+                <p class="hero-para">
+                    <span class="dropcap">W</span>e build custom websites, mobile apps, AI chatbots, and
+                    helpdesk automation. Done fast, done right, done once, <em>the first time.</em>
+                </p>
+                <form class="hero-form" id="contactForm">
+                    <div class="hf-row">
+                        <input type="text" placeholder="Name" required>
+                        <input type="email" placeholder="Email" required>
                     </div>
-                    <h3>Custom Websites</h3>
-                    <p>Bespoke websites designed and developed from scratch to match your unique brand identity and business goals.</p>
-                    <span class="service-price">From ₹3,000</span>
-                </div>
-                <div class="service-card featured" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="5" y="2" width="14" height="20" rx="2"/>
-                            <path d="M12 18h.01"/>
-                        </svg>
+                    <div class="hf-phone">
+                        <span class="hf-flag">🇮🇳 +91</span>
+                        <input type="tel" placeholder="Phone" required>
                     </div>
-                    <h3>Mobile App Development</h3>
-                    <p>Native and cross-platform mobile apps for iOS & Android that deliver seamless user experiences and boost engagement.</p>
-                    <span class="service-price">From ₹50,000</span>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3>E-Commerce Solutions</h3>
-                    <p>Full-featured online stores with secure payments, inventory management, and conversion-optimized design.</p>
-                    <span class="service-price">From ₹35,000</span>
-                </div>
-                <div class="service-card featured" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-                            <path d="M8 10h.01M12 10h.01M16 10h.01"/>
-                        </svg>
-                    </div>
-                    <h3>AI Helpdesk Chatbot</h3>
-                    <p>24/7 intelligent chatbots that handle customer queries, resolve tickets, and escalate issues — reducing support costs by up to 70%.</p>
-                    <span class="service-price">From ₹25,000</span>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-                            <path d="M14.05 2a9 9 0 018 7.94"/>
-                            <path d="M14.05 6A5 5 0 0118 10"/>
-                        </svg>
-                    </div>
-                    <h3>On-Call AI Assistant</h3>
-                    <p>Voice-enabled AI assistant that handles phone calls, books appointments, answers FAQs, and routes customers — your 24/7 virtual receptionist.</p>
-                    <span class="service-price">From ₹40,000</span>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                        </svg>
-                    </div>
-                    <h3>SEO & Performance</h3>
-                    <p>Optimize your site for search engines and blazing-fast load times to maximize your organic reach and conversions.</p>
-                    <span class="service-price">From ₹8,000</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Pricing Plans</span>
-                <h2 class="section-title">Investment That <span class="gradient-text">Pays Off</span></h2>
-                <p class="section-desc">Transparent pricing. No hidden fees. Choose the plan that fits your ambition.</p>
-            </div>
-            <div class="pricing-grid">
-                <!-- Starter Plan -->
-                <div class="pricing-card" data-aos="fade-up">
-                    <div class="pricing-header">
-                        <span class="plan-name">Starter</span>
-                        <div class="plan-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">3,000</span>
-                        </div>
-                        <span class="plan-period">Starting price</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><span class="check">✓</span> Lead Capturing Website</li>
-                        <li><span class="check">✓</span> Mobile Responsive</li>
-                        <li><span class="check">✓</span> Contact Form</li>
-                        <li><span class="check">✓</span> Basic SEO Setup</li>
-                        <li><span class="check">✓</span> 1 Revision Round</li>
-                        <li class="disabled"><span class="cross">✗</span> Custom Animations</li>
-                        <li class="disabled"><span class="cross">✗</span> CMS Integration</li>
-                    </ul>
-                    <a href="#contact" class="btn-plan">Get Started</a>
-                </div>
-                <!-- Professional Plan -->
-                <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="100">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <span class="plan-name">Professional</span>
-                        <div class="plan-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">15,000</span>
-                        </div>
-                        <span class="plan-period">Starting price</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><span class="check">✓</span> Multi-Page Website</li>
-                        <li><span class="check">✓</span> Premium UI/UX Design</li>
-                        <li><span class="check">✓</span> Mobile + Tablet Optimized</li>
-                        <li><span class="check">✓</span> Advanced SEO</li>
-                        <li><span class="check">✓</span> CMS Integration</li>
-                        <li><span class="check">✓</span> Custom Animations</li>
-                        <li><span class="check">✓</span> Basic Chatbot Integration</li>
-                        <li><span class="check">✓</span> 3 Revision Rounds</li>
-                        <li><span class="check">✓</span> 3 Months Support</li>
-                    </ul>
-                    <a href="#contact" class="btn-plan btn-plan-popular">Get Started</a>
-                </div>
-                <!-- Enterprise Plan -->
-                <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="pricing-header">
-                        <span class="plan-name">Enterprise</span>
-                        <div class="plan-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">50,000</span>
-                        </div>
-                        <span class="plan-period">Starting price</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><span class="check">✓</span> Full-Scale Website</li>
-                        <li><span class="check">✓</span> Custom Web Application</li>
-                        <li><span class="check">✓</span> E-Commerce Integration</li>
-                        <li><span class="check">✓</span> AI Helpdesk Chatbot</li>
-                        <li><span class="check">✓</span> Payment Gateway</li>
-                        <li><span class="check">✓</span> Admin Dashboard</li>
-                        <li><span class="check">✓</span> API Integrations</li>
-                        <li><span class="check">✓</span> Unlimited Revisions</li>
-                        <li><span class="check">✓</span> 6 Months Support</li>
-                    </ul>
-                    <a href="#contact" class="btn-plan">Get Started</a>
-                </div>
-                <!-- Premium Plan -->
-                <div class="pricing-card premium" data-aos="fade-up" data-aos-delay="300">
-                    <div class="premium-badge">Premium</div>
-                    <div class="pricing-header">
-                        <span class="plan-name">Ultimate</span>
-                        <div class="plan-price">
-                            <span class="currency">₹</span>
-                            <span class="amount">1,00,000</span>
-                        </div>
-                        <span class="plan-period">Starting price</span>
-                    </div>
-                    <ul class="plan-features">
-                        <li><span class="check">✓</span> Everything in Enterprise</li>
-                        <li><span class="check">✓</span> Mobile App (iOS + Android)</li>
-                        <li><span class="check">✓</span> AI Helpdesk Chatbot</li>
-                        <li><span class="check">✓</span> On-Call AI Voice Assistant</li>
-                        <li><span class="check">✓</span> Custom SaaS Development</li>
-                        <li><span class="check">✓</span> Advanced Security</li>
-                        <li><span class="check">✓</span> Dedicated Project Manager</li>
-                        <li><span class="check">✓</span> Priority 24/7 Support</li>
-                        <li><span class="check">✓</span> 12 Months Maintenance</li>
-                    </ul>
-                    <a href="#contact" class="btn-plan btn-plan-premium">Get Started</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Our Work</span>
-                <h2 class="section-title">Projects We're <span class="gradient-text">Proud Of</span></h2>
-                <p class="section-desc">A glimpse into the premium digital experiences we've crafted for our clients.</p>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-card large">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #0a1628 0%, #1a3a6b 100%);">
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">E-Commerce</span>
-                            <h3>LuxeCart Online Store</h3>
-                            <p>Premium shopping experience with AI recommendations</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-card">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #1a0a28 0%, #4a1a6b 100%);">
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">SaaS Platform</span>
-                            <h3>DataFlow Analytics</h3>
-                            <p>Real-time dashboard with live metrics</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-card">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #0a2818 0%, #1a6b3a 100%);">
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-tag">Corporate</span>
-                            <h3>TechVentures Inc.</h3>
-                            <p>Modern corporate identity website</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Testimonials</span>
-                <h2 class="section-title">What Clients <span class="gradient-text">Say</span></h2>
-            </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"SkyCode delivered beyond our expectations. Our new website increased conversions by 340% in the first month."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RK</div>
-                        <div>
-                            <strong>Rahul Kumar</strong>
-                            <span>CEO, TechStart India</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"The team's attention to detail is incredible. They built our e-commerce platform that handles 10,000+ daily orders flawlessly."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">PS</div>
-                        <div>
-                            <strong>Priya Sharma</strong>
-                            <span>Founder, StyleBox</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"Professional, fast, and the quality is unmatched. Our site looks like it cost 10x what we paid. Highly recommend!"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AM</div>
-                        <div>
-                            <strong>Amit Mehta</strong>
-                            <span>Director, CloudNine Services</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <span class="section-tag">Get In Touch</span>
-                    <h2 class="section-title">Let's Build Something <span class="gradient-text">Amazing</span></h2>
-                    <p>Ready to elevate your digital presence? Let's discuss your project and bring your vision to life.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <strong>Email Us</strong>
-                                <span>hello@skycodesolutions.in</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <strong>Call Us</strong>
-                                <span>+91 98765 43210</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <strong>Location</strong>
-                                <span>India</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <select required>
-                            <option value="" disabled selected>Select Budget Range</option>
-                            <option value="3000-10000">₹3,000 - ₹10,000</option>
-                            <option value="10000-25000">₹10,000 - ₹25,000</option>
-                            <option value="25000-50000">₹25,000 - ₹50,000</option>
-                            <option value="50000-100000">₹50,000 - ₹1,00,000</option>
-                            <option value="100000+">₹1,00,000+</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Tell us about your project..." rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary btn-full">
-                        Send Message
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                        </svg>
-                    </button>
+                    <textarea placeholder="About your project" rows="3" required></textarea>
+                    <button type="submit" class="btn-primary btn-full" data-cursor="hover"><span>Send Message →</span></button>
                 </form>
             </div>
+
+            <!-- Right: mockup + sphere -->
+            <div class="hero-right">
+                <div class="hero-circle"></div>
+                <div class="hero-sphere"></div>
+                <div class="hero-mockup">
+                    <div class="mockup-badge badge-tl">150+ BRANDS</div>
+                    <div class="mockup-badge badge-br">20+ COUNTRIES</div>
+                    <div class="mockup-badge badge-bl">◆ IGNITION</div>
+                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=500&fit=crop" alt="Featured project">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Ticker -->
+    <div class="ticker">
+        <div class="ticker-track">
+            <div class="ticker-content">
+                <span>150+ PROJECTS DELIVERED</span><span class="ticker-star">✦</span>
+                <span>98% CLIENT SATISFACTION</span><span class="ticker-star">✦</span>
+                <span>20+ COUNTRIES</span><span class="ticker-star">✦</span>
+                <span>5.0 RATING</span><span class="ticker-star">✦</span>
+                <span>24/7 SUPPORT</span><span class="ticker-star">✦</span>
+                <span>150+ PROJECTS DELIVERED</span><span class="ticker-star">✦</span>
+                <span>98% CLIENT SATISFACTION</span><span class="ticker-star">✦</span>
+                <span>20+ COUNTRIES</span><span class="ticker-star">✦</span>
+                <span>5.0 RATING</span><span class="ticker-star">✦</span>
+                <span>24/7 SUPPORT</span><span class="ticker-star">✦</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-row">
+                <div class="cta-follow">
+                    <span class="cta-follow-label">FOLLOW US</span>
+                    <div class="cta-social">
+                        <a href="#" data-cursor="hover" aria-label="LinkedIn">in</a>
+                        <a href="#" data-cursor="hover" aria-label="X">✕</a>
+                        <a href="#" data-cursor="hover" aria-label="Instagram">◉</a>
+                        <a href="#" data-cursor="hover" aria-label="YouTube">▶</a>
+                    </div>
+                </div>
+                <a href="#contact" class="cta-pill" data-cursor="hover">
+                    <span>Let's <em>transform</em> your digital presence</span>
+                    <span class="cta-pill-arrow">↗</span>
+                </a>
+                <div class="cta-what">
+                    <span class="cta-what-label">WHAT WE DO</span>
+                    <p>Industry-leading websites, <em>premium</em> apps, and growth that compounds.</p>
+                    <div class="cta-what-foot">
+                        <div class="cta-avatars">
+                            <span>SK</span><span>YC</span><span>DE</span>
+                        </div>
+                        <span class="cta-leads">THE <em>leads</em></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="leads">
+        <div class="container">
+            <div class="leads-grid">
+                <div class="lead-stat"><div class="lead-figure"><span class="lead-num" data-target="150">0</span><span class="lead-plus">+</span></div><span class="lead-label">BRANDS BUILT</span></div>
+                <div class="lead-stat"><div class="lead-figure"><span class="lead-num" data-target="20">0</span><span class="lead-plus">+</span></div><span class="lead-label">COUNTRIES</span></div>
+                <div class="lead-stat"><div class="lead-figure"><span class="lead-cur">₹</span><span class="lead-num" data-target="5">0</span><span class="lead-plus">Cr+</span></div><span class="lead-label">REVENUE SCALED</span></div>
+                <div class="lead-stat"><div class="lead-figure"><span class="lead-num-static">4.9</span><span class="lead-plus">★</span></div><span class="lead-label">CLIENT RATING</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust">
+        <div class="container">
+            <div class="trust-tag">AWARDED · <em>certified</em> · RECOGNIZED</div>
+            <div class="trust-row">
+                <div class="trust-badge"><span class="tb-star">★</span> Trustpilot <span class="tb-sub">4.9 · 70+ REVIEWS</span></div>
+                <div class="trust-badge">GOOGLE <span class="tb-sub">5-STAR PARTNER</span></div>
+                <div class="trust-badge">SHOPIFY <span class="tb-sub">VERIFIED EXPERT</span></div>
+                <div class="trust-badge">CLUTCH <span class="tb-sub">TOP COMPANY</span></div>
+                <div class="trust-badge">GOODFIRMS <span class="tb-sub">VERIFIED</span></div>
+                <div class="trust-badge">★ BEST WEB <span class="tb-sub">DEV AGENCY 2026</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-layout">
+                <!-- Left column -->
+                <div class="services-left">
+                    <span class="sec-label">§ 02 · OUR SERVICES</span>
+                    <h2 class="services-title">Built the way<br>modern teams<br><em>actually</em> work.</h2>
+                    <p class="services-sub">Six disciplines, one team. Hover any line for the signal.</p>
+                    <div class="services-btns">
+                        <a href="#contact" class="btn-primary" data-cursor="hover"><span>Start a project →</span></a>
+                        <a href="#contact" class="services-all" data-cursor="hover">All services →</a>
+                    </div>
+                </div>
+
+                <!-- Right column: service list -->
+                <div class="services-right">
+                    <div class="srv-sphere" id="srvSphere"></div>
+                    <a href="#contact" class="srv-line" data-cursor="hover" data-color="#4d7fff">
+                        <span class="srv-tag">01 · WEB</span>
+                        <span class="srv-name"><span class="srv-dash">–</span>Web Development</span>
+                        <span class="srv-stack">HTML · React · Next.js</span>
+                    </a>
+                    <a href="#contact" class="srv-line" data-cursor="hover" data-color="#6b4dff">
+                        <span class="srv-tag">02 · MOBILE</span>
+                        <span class="srv-name"><span class="srv-dash">–</span>Mobile App Development</span>
+                        <span class="srv-stack">iOS · Android · React Native</span>
+                    </a>
+                    <a href="#contact" class="srv-line" data-cursor="hover" data-color="#00c2b8">
+                        <span class="srv-tag">03 · AI</span>
+                        <span class="srv-name"><span class="srv-dash">–</span>AI Helpdesk Chatbot</span>
+                        <span class="srv-stack">NLP · 24/7 · Auto-resolve</span>
+                    </a>
+                    <a href="#contact" class="srv-line" data-cursor="hover" data-color="#ff8c42">
+                        <span class="srv-tag">04 · VOICE</span>
+                        <span class="srv-name"><span class="srv-dash">–</span>On-Call AI Voice Assistant</span>
+                        <span class="srv-stack">Phone · Appointments · FAQ</span>
+                    </a>
+                    <a href="#contact" class="srv-line" data-cursor="hover" data-color="#e0405e">
+                        <span class="srv-tag">05 · COMMERCE</span>
+                        <span class="srv-name"><span class="srv-dash">–</span>E-Commerce Development</span>
+                        <span class="srv-stack">Shopify · WooCommerce · Custom</span>
+                    </a>
+                    <a href="#contact" class="srv-line" data-cursor="hover" data-color="#d4af37">
+                        <span class="srv-tag">06 · GROWTH</span>
+                        <span class="srv-name"><span class="srv-dash">–</span>SEO & Growth Strategy</span>
+                        <span class="srv-stack">Analytics · CRO · SEO</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work / Case Studies -->
+    <section class="work" id="work">
+        <div class="container">
+            <div class="work-head">
+                <span class="sec-label">§ 03 · CASE STUDIES</span>
+                <h2 class="sec-title">Brands we've scaled<br>to real growth.</h2>
+                <span class="work-meta">SELECTED WORK · 2024–2026 · THREE FEATURED</span>
+            </div>
+            <div class="work-list">
+                <div class="work-item" data-cursor="hover">
+                    <div class="work-img">
+                        <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?w=800&h=500&fit=crop" alt="LuxeCart">
+                    </div>
+                    <div class="work-detail">
+                        <span class="work-cat">★ FEATURED · E-COMMERCE · INDIA</span>
+                        <h3>LuxeCart.</h3>
+                        <div class="work-stats">
+                            <div><span class="ws-num">₹2Cr</span><span class="ws-lbl">REVENUE</span></div>
+                            <div><span class="ws-num">+340%</span><span class="ws-lbl">GROWTH</span></div>
+                        </div>
+                        <p>Scaled a premium retail brand with multi-currency checkout, AI recommendations, and a 50K+ loyalty program.</p>
+                    </div>
+                </div>
+                <div class="work-item reverse" data-cursor="hover">
+                    <div class="work-img">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=500&fit=crop" alt="FitTrack">
+                    </div>
+                    <div class="work-detail">
+                        <span class="work-cat">MOBILE APP · iOS + ANDROID</span>
+                        <h3>FitTrack Pro.</h3>
+                        <div class="work-stats">
+                            <div><span class="ws-num">100K+</span><span class="ws-lbl">DOWNLOADS</span></div>
+                            <div><span class="ws-num">4.8★</span><span class="ws-lbl">RATING</span></div>
+                        </div>
+                        <p>Cross-platform fitness app with real-time tracking, social challenges, and personalized AI coaching.</p>
+                    </div>
+                </div>
+                <div class="work-item" data-cursor="hover">
+                    <div class="work-img">
+                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=500&fit=crop" alt="HelpBot">
+                    </div>
+                    <div class="work-detail">
+                        <span class="work-cat">AI CHATBOT · SAAS</span>
+                        <h3>HelpBot Pro.</h3>
+                        <div class="work-stats">
+                            <div><span class="ws-num">70%</span><span class="ws-lbl">AUTO-RESOLVED</span></div>
+                            <div><span class="ws-num">24/7</span><span class="ws-lbl">UPTIME</span></div>
+                        </div>
+                        <p>AI helpdesk handling thousands of daily queries, cutting support costs while boosting satisfaction.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="process-head">
+                <span class="sec-label">§ 04 · THE PROCESS</span>
+                <h2 class="sec-title">Same five acts.<br>Different stage.</h2>
+                <p class="sec-sub">Whether the deliverable is a page, a store, or an app — we move through the same five phases. Predictable cadence, unpredictable craft.</p>
+            </div>
+            <div class="acts">
+                <div class="act">
+                    <span class="act-num">§ 01</span>
+                    <h3>Discover</h3>
+                    <p>Brief, audience, voice. The story before the design.</p>
+                </div>
+                <div class="act">
+                    <span class="act-num">§ 02</span>
+                    <h3>Design</h3>
+                    <p>Wireframes become hi-fidelity. Decisions become defendable.</p>
+                </div>
+                <div class="act">
+                    <span class="act-num">§ 03</span>
+                    <h3>Build</h3>
+                    <p>Components, content, infrastructure. Done in green.</p>
+                </div>
+                <div class="act">
+                    <span class="act-num">§ 04</span>
+                    <h3>Launch</h3>
+                    <p>Quiet ship. Loud welcome. A live URL with your name on it.</p>
+                </div>
+                <div class="act">
+                    <span class="act-num">§ 05</span>
+                    <h3>Optimize</h3>
+                    <p>A/B, cohort, conversion. Numbers that justify the next sprint.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Timeline -->
+    <section class="story">
+        <div class="container">
+            <div class="story-head">
+                <span class="sec-label">§ 05 · OUR STORY</span>
+                <h2 class="sec-title">Built to launch brands<br>into new orbits.</h2>
+                <p class="story-quote">"We started with a single project. Today we ship premium digital products for brands across the world. The craft is the only reason anyone stays."</p>
+                <span class="story-by">— SKYCODE SOLUTIONS, FOUNDER</span>
+            </div>
+            <div class="timeline">
+                <div class="tl-item">
+                    <span class="tl-year">2024</span>
+                    <div class="tl-body"><strong>The beginning</strong><p>SkyCode launches. First clients arrive within the first month.</p></div>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-year">2025</span>
+                    <div class="tl-body"><strong>Scaling up</strong><p>50+ brands shipped. AI chatbot and voice assistant services added.</p></div>
+                </div>
+                <div class="tl-item">
+                    <span class="tl-year">2026</span>
+                    <div class="tl-body"><strong>Going global</strong><p>150+ brands across 20+ countries. Full-stack digital agency.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="pricing-head">
+                <span class="sec-label">§ 06 · PRICING</span>
+                <h2 class="sec-title">Transparent pricing.<br>No surprises.</h2>
+            </div>
+            <div class="price-grid">
+                <div class="price-card">
+                    <span class="pc-name">STARTER</span>
+                    <div class="pc-price"><span>₹</span>3,000</div>
+                    <span class="pc-note">One-time</span>
+                    <ul>
+                        <li>Lead Capturing Website</li>
+                        <li>Mobile Responsive</li>
+                        <li>Contact Form</li>
+                        <li>Basic SEO</li>
+                        <li>1 Revision</li>
+                    </ul>
+                    <a href="#contact" class="pc-btn" data-cursor="hover">Get Started</a>
+                </div>
+                <div class="price-card featured">
+                    <span class="pc-badge">RECOMMENDED</span>
+                    <span class="pc-name">PROFESSIONAL</span>
+                    <div class="pc-price"><span>₹</span>15,000</div>
+                    <span class="pc-note">One-time</span>
+                    <ul>
+                        <li>Multi-Page Website</li>
+                        <li>Premium UI/UX</li>
+                        <li>Advanced SEO</li>
+                        <li>CMS + Animations</li>
+                        <li>Basic Chatbot</li>
+                        <li>3 Months Support</li>
+                    </ul>
+                    <a href="#contact" class="pc-btn pc-btn-fill" data-cursor="hover">Get Started</a>
+                </div>
+                <div class="price-card">
+                    <span class="pc-name">ENTERPRISE</span>
+                    <div class="pc-price"><span>₹</span>50,000</div>
+                    <span class="pc-note">One-time</span>
+                    <ul>
+                        <li>Website + Web App</li>
+                        <li>E-Commerce</li>
+                        <li>AI Helpdesk Chatbot</li>
+                        <li>Payment Gateway</li>
+                        <li>Admin Dashboard</li>
+                        <li>6 Months Support</li>
+                    </ul>
+                    <a href="#contact" class="pc-btn" data-cursor="hover">Get Started</a>
+                </div>
+                <div class="price-card ultimate">
+                    <span class="pc-badge gold">ULTIMATE</span>
+                    <span class="pc-name">ULTIMATE</span>
+                    <div class="pc-price"><span>₹</span>1,00,000</div>
+                    <span class="pc-note">One-time</span>
+                    <ul>
+                        <li>Everything in Enterprise</li>
+                        <li>Mobile App (iOS+Android)</li>
+                        <li>On-Call AI Voice Assistant</li>
+                        <li>Custom SaaS</li>
+                        <li>Dedicated PM</li>
+                        <li>12 Months Maintenance</li>
+                    </ul>
+                    <a href="#contact" class="pc-btn pc-btn-gold" data-cursor="hover">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Launch -->
+    <section class="launch" id="contact">
+        <div class="container">
+            <span class="sec-label">§ 07 · CONTACT · MISSION CONTROL ONLINE</span>
+            <h2 class="launch-title">Ready for<br>liftoff?</h2>
+            <p class="launch-sub">Tell us about your brand. A plan, a team, a timeline — within 24 hours. No decks. No discovery calls. Just signal.</p>
+            <div class="launch-wrap">
+                <div class="launch-methods">
+                    <a href="https://wa.me/917667861913" class="lm" data-cursor="hover" target="_blank">
+                        <span class="lm-label">WHATSAPP · INSTANT REPLY</span>
+                        <span class="lm-value">+91 7667861913</span>
+                    </a>
+                    <a href="mailto:hello@skycodesolutions.in" class="lm" data-cursor="hover">
+                        <span class="lm-label">EMAIL US</span>
+                        <span class="lm-value">hello@skycodesolutions.in</span>
+                    </a>
+                    <div class="lm">
+                        <span class="lm-label">BASED IN</span>
+                        <span class="lm-value">India · Serving Worldwide</span>
+                    </div>
+                </div>
+                <form class="launch-form" id="launchForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <select required>
+                        <option value="" disabled selected>Budget Range</option>
+                        <option>₹3,000 – ₹10,000</option>
+                        <option>₹10,000 – ₹25,000</option>
+                        <option>₹25,000 – ₹50,000</option>
+                        <option>₹50,000 – ₹1,00,000</option>
+                        <option>₹1,00,000+</option>
+                    </select>
+                    <textarea placeholder="Tell us about your project..." rows="4" required></textarea>
+                    <button type="submit" class="btn-primary btn-full" data-cursor="hover"><span>Start Your Launch Sequence</span></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- End transmission -->
+    <section class="end-transmission">
+        <div class="container">
+            <span class="sec-label">§ END OF TRANSMISSION</span>
+            <h2 class="end-title">Let's build<br>something worth<br>launching.</h2>
+            <a href="#contact" class="btn-primary" data-cursor="hover"><span>Book a call</span></a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-top">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <img src="logo.jpeg" alt="SkyCode Solutions" class="logo-img">
-                        <div class="logo-text-wrap">
-                            <span class="logo-text"><span class="logo-sky">SKY</span><span class="logo-code">CODE</span></span>
-                            <span class="logo-tagline">SOLUTIONS</span>
-                        </div>
+                        <img src="logo.jpeg" alt="SkyCode" class="logo-img">
+                        <span class="logo-word">SKYCODE</span>
                     </a>
-                    <p>Building premium digital experiences that drive real business growth.</p>
+                    <p>EST. 2024 · TURNING IDEAS INTO DIGITAL EXPERIENCES. Premium websites, apps & AI systems built across 20+ countries.</p>
                 </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
+                <div class="footer-col">
+                    <h4>SERVICES</h4>
+                    <a href="#">Web Development</a>
+                    <a href="#">Mobile Apps</a>
+                    <a href="#">AI Chatbots</a>
+                    <a href="#">Voice Assistant</a>
+                    <a href="#">E-Commerce</a>
+                    <a href="#">SEO</a>
+                </div>
+                <div class="footer-col">
+                    <h4>COMPANY</h4>
                     <a href="#services">Services</a>
+                    <a href="#work">Work</a>
+                    <a href="#process">Process</a>
                     <a href="#pricing">Pricing</a>
-                    <a href="#portfolio">Portfolio</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <a href="#">Custom Websites</a>
-                    <a href="#">Mobile Apps</a>
-                    <a href="#">AI Helpdesk Chatbot</a>
-                    <a href="#">On-Call AI Assistant</a>
-                    <a href="#">E-Commerce</a>
+                <div class="footer-col">
+                    <h4>CONNECT</h4>
+                    <a href="https://wa.me/917667861913" target="_blank">WhatsApp</a>
+                    <a href="mailto:hello@skycodesolutions.in">Email</a>
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 SkyCode Solutions. All rights reserved.</p>
-                <p>Crafted with passion in India 🇮🇳</p>
+                <span>© 2024 SKYCODE SOLUTIONS · ALL RIGHTS RESERVED</span>
+                <span>WE DESIGN · WE DEVELOP · WE GROW</span>
             </div>
         </div>
     </footer>
